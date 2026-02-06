@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Firefly Software Solutions Inc
+ * Copyright 2024-2026 Firefly Software Solutions Inc
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,11 +15,11 @@
  */
 
 
-package com.firefly.core.notifications.providers.resend.config.v1;
+package org.fireflyframework.notifications.providers.resend.config.v1;
 
-import com.firefly.common.client.RestClient;
-import com.firefly.common.client.ServiceClient;
-import com.firefly.core.notifications.providers.resend.properties.v1.ResendProperties;
+import org.fireflyframework.client.RestClient;
+import org.fireflyframework.client.ServiceClient;
+import org.fireflyframework.notifications.providers.resend.properties.v1.ResendProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-# lib-notifications-resend
+# fireflyframework-notifications-resend
 
 Resend email adapter for Firefly Notifications.
 
@@ -12,8 +12,8 @@ Add the dependency to your `pom.xml`:
 
 ```xml path=null start=null
 <dependency>
-  <groupId>com.firefly</groupId>
-  <artifactId>lib-notifications-resend</artifactId>
+  <groupId>org.fireflyframework</groupId>
+  <artifactId>fireflyframework-notifications-resend</artifactId>
   <version>1.0.0-SNAPSHOT</version>
 </dependency>
 ```
@@ -38,7 +38,7 @@ resend:
 
 ## Usage
 
-This library automatically registers a `ResendEmailProvider` bean that implements the `EmailProvider` interface. Use the `EmailService` from `lib-notifications-core` to send emails:
+This library automatically registers a `ResendEmailProvider` bean that implements the `EmailProvider` interface. Use the `EmailService` from `fireflyframework-notifications-core` to send emails:
 
 ```java path=null start=null
 @Autowired

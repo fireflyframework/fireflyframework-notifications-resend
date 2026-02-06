@@ -5,18 +5,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.firefly</groupId>
-        <artifactId>lib-parent-pom</artifactId>
+        <groupId>org.fireflyframework</groupId>
+        <artifactId>fireflyframework-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
         <relativePath/>
     </parent>
 
-    <groupId>com.firefly</groupId>
-    <artifactId>lib-notifications-resend</artifactId>
+    <groupId>org.fireflyframework</groupId>
+    <artifactId>fireflyframework-notifications-resend</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Firefly Notifications - Resend</name>
+    <name>Firefly Framework - Notifications - Resend</name>
     <description>Resend Email adapter for Firefly Notifications</description>
 
     <properties>
@@ -26,15 +26,15 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.firefly</groupId>
-            <artifactId>lib-notifications-core</artifactId>
+            <groupId>org.fireflyframework</groupId>
+            <artifactId>fireflyframework-notifications-core</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <!-- Firefly common REST client -->
         <dependency>
-            <groupId>com.firefly</groupId>
-            <artifactId>lib-common-client</artifactId>
+            <groupId>org.fireflyframework</groupId>
+            <artifactId>fireflyframework-client</artifactId>
             <version>${project.version}</version>
         </dependency>
 

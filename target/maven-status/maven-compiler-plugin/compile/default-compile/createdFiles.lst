@@ -1,4 +1,5 @@
-com/firefly/core/notifications/provider/resend/config/v1/ResendConfig.class
-com/firefly/core/notifications/provider/resend/core/v1/ResendEmailProvider.class
-com/firefly/core/notifications/provider/resend/properties/v1/ResendProperties.class
-com/firefly/core/notifications/provider/resend/core/v1/ResendEmailProvider$ResendSendResponse.class
+org/fireflyframework/notifications/providers/resend/core/v1/ResendEmailProvider$ResendSendResponse.class
+META-INF/spring-configuration-metadata.json
+org/fireflyframework/notifications/providers/resend/properties/v1/ResendProperties.class
+org/fireflyframework/notifications/providers/resend/core/v1/ResendEmailProvider.class
+org/fireflyframework/notifications/providers/resend/config/v1/ResendConfig.class

@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Firefly Software Solutions Inc
+ * Copyright 2024-2026 Firefly Software Solutions Inc
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,14 +15,14 @@
  */
 
 
-package com.firefly.core.notifications.providers.resend.core.v1;
+package org.fireflyframework.notifications.providers.resend.core.v1;
 
-import com.firefly.core.notifications.interfaces.dtos.email.v1.EmailAttachmentDTO;
-import com.firefly.core.notifications.interfaces.dtos.email.v1.EmailRequestDTO;
-import com.firefly.core.notifications.interfaces.dtos.email.v1.EmailResponseDTO;
-import com.firefly.core.notifications.interfaces.interfaces.providers.email.v1.EmailProvider;
-import com.firefly.core.notifications.providers.resend.properties.v1.ResendProperties;
-import com.firefly.common.client.RestClient;
+import org.fireflyframework.notifications.interfaces.dtos.email.v1.EmailAttachmentDTO;
+import org.fireflyframework.notifications.interfaces.dtos.email.v1.EmailRequestDTO;
+import org.fireflyframework.notifications.interfaces.dtos.email.v1.EmailResponseDTO;
+import org.fireflyframework.notifications.interfaces.interfaces.providers.email.v1.EmailProvider;
+import org.fireflyframework.notifications.providers.resend.properties.v1.ResendProperties;
+import org.fireflyframework.client.RestClient;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
