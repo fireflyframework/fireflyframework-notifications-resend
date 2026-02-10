@@ -1,5 +1,7 @@
 # fireflyframework-notifications-resend
 
+[![CI](https://github.com/fireflyframework/fireflyframework-notifications-resend/actions/workflows/ci.yml/badge.svg)](https://github.com/fireflyframework/fireflyframework-notifications-resend/actions/workflows/ci.yml)
+
 Resend email adapter for Firefly Notifications.
 
 ## About Resend
