@@ -1,97 +1,90 @@
-# fireflyframework-notifications-resend
+# Firefly Framework - Notifications - Resend
 
 [![CI](https://github.com/fireflyframework/fireflyframework-notifications-resend/actions/workflows/ci.yml/badge.svg)](https://github.com/fireflyframework/fireflyframework-notifications-resend/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![Java](https://img.shields.io/badge/Java-21%2B-orange.svg)](https://openjdk.org)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-green.svg)](https://spring.io/projects/spring-boot)
 
-Resend email adapter for Firefly Notifications.
+> Resend email adapter for Firefly Notifications.
 
-## About Resend
+---
 
-[Resend](https://resend.com) is a modern email API service designed for developers. This library provides a Spring Boot integration that implements the Firefly `EmailProvider` interface, allowing you to send transactional emails through Resend's infrastructure.
+## Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Configuration](#configuration)
+- [Documentation](#documentation)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Overview
+
+Firefly Framework Notifications Resend implements the `EmailProvider` interface from the Firefly Notifications core module using Resend as the delivery provider. It provides `ResendEmailProvider` which handles email delivery through the Resend API.
+
+The module includes auto-configuration for seamless activation when included on the classpath alongside the notifications core module. Configuration properties allow customizing API credentials and provider-specific settings.
+
+## Features
+
+- `EmailProvider` implementation using Resend
+- Spring Boot auto-configuration for seamless activation
+- Configurable API credentials via application properties
+- Standalone provider library (include alongside fireflyframework-notifications)
+
+## Requirements
+
+- Java 21+
+- Spring Boot 3.x
+- Maven 3.9+
+- Resend account and API credentials
 
 ## Installation
 
-Add the dependency to your `pom.xml`:
-
-```xml path=null start=null
+```xml
 <dependency>
-  <groupId>org.fireflyframework</groupId>
-  <artifactId>fireflyframework-notifications-resend</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+    <groupId>org.fireflyframework</groupId>
+    <artifactId>fireflyframework-notifications-resend</artifactId>
+    <version>26.01.01</version>
 </dependency>
+```
+
+## Quick Start
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>org.fireflyframework</groupId>
+        <artifactId>fireflyframework-notifications</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.fireflyframework</groupId>
+        <artifactId>fireflyframework-notifications-resend</artifactId>
+    </dependency>
+</dependencies>
 ```
 
 ## Configuration
 
-Configure Resend in your `application.yml`:
-
-```yaml path=null start=null
-resend:
-  apiKey: ${RESEND_API_KEY}           # Required: Your Resend API key
-  defaultFrom: "noreply@example.com"   # Required: Default sender email address
-  baseUrl: https://api.resend.com      # Optional: Override for testing (defaults to https://api.resend.com)
+```yaml
+firefly:
+  notifications:
+    resend:
+      api-key: re_xxxxxxxxxx
 ```
 
-### Getting Your API Key
+## Documentation
 
-1. Sign up at [resend.com](https://resend.com)
-2. Navigate to API Keys in your dashboard
-3. Create a new API key
-4. Set it as an environment variable: `export RESEND_API_KEY=re_...`
+No additional documentation available for this project.
 
-## Usage
+## Contributing
 
-This library automatically registers a `ResendEmailProvider` bean that implements the `EmailProvider` interface. Use the `EmailService` from `fireflyframework-notifications-core` to send emails:
+Contributions are welcome. Please read the [CONTRIBUTING.md](CONTRIBUTING.md) guide for details on our code of conduct, development process, and how to submit pull requests.
 
-```java path=null start=null
-@Autowired
-private EmailService emailService;
+## License
 
-public void sendWelcomeEmail(String userEmail) {
-    EmailRequestDTO request = EmailRequestDTO.builder()
-        .to(List.of(userEmail))
-        .subject("Welcome!")
-        .html("<h1>Welcome to our platform</h1>")
-        .text("Welcome to our platform")
-        .build();
-    
-    emailService.sendEmail(request)
-        .subscribe(response -> {
-            if (response.isSuccess()) {
-                log.info("Email sent with ID: {}", response.getMessageId());
-            } else {
-                log.error("Failed to send email: {}", response.getError());
-            }
-        });
-}
-```
+Copyright 2024-2026 Firefly Software Solutions Inc.
 
-## Features
-
-- **HTML and plain text emails**: Send rich HTML emails with plain text fallback
-- **CC and BCC**: Include additional recipients via carbon copy or blind carbon copy
-- **Attachments**: Attach files with automatic base64 encoding
-- **Reactive**: Built on Project Reactor for non-blocking email delivery
-- **Automatic retries**: Errors are handled gracefully and logged
-
-### Sending Emails with Attachments
-
-```java path=null start=null
-EmailAttachmentDTO attachment = EmailAttachmentDTO.builder()
-    .filename("invoice.pdf")
-    .content(pdfBytes)
-    .contentType("application/pdf")
-    .build();
-
-EmailRequestDTO request = EmailRequestDTO.builder()
-    .to(List.of("customer@example.com"))
-    .subject("Your Invoice")
-    .html("<p>Please find your invoice attached.</p>")
-    .attachments(List.of(attachment))
-    .build();
-
-emailService.sendEmail(request).subscribe();
-```
-
-## API Response
-
-Resend returns a unique message ID for each successfully sent email, which is included in the `EmailResponseDTO.messageId` field. You can use this ID to track delivery status via Resend's dashboard or webhooks.
+Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for details.
