@@ -19,11 +19,9 @@ package org.fireflyframework.notifications.providers.resend.properties.v1;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 
 @Data
-@Configuration
-@ConfigurationProperties(prefix = "resend")
+@ConfigurationProperties(prefix = "firefly.notifications.resend")
 public class ResendProperties {
     private String apiKey;
     private String defaultFrom;

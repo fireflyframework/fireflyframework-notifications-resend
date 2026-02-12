@@ -19,19 +19,24 @@ package org.fireflyframework.notifications.providers.resend.config.v1;
 
 import org.fireflyframework.client.RestClient;
 import org.fireflyframework.client.ServiceClient;
+import org.fireflyframework.notifications.interfaces.interfaces.providers.email.v1.EmailProvider;
+import org.fireflyframework.notifications.providers.resend.core.v1.ResendEmailProvider;
 import org.fireflyframework.notifications.providers.resend.properties.v1.ResendProperties;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 @Slf4j
-@Configuration
-@ConditionalOnProperty(prefix = "notifications.email", name = "provider", havingValue = "resend")
+@AutoConfiguration
+@ConditionalOnProperty(name = "firefly.notifications.email.provider", havingValue = "resend")
+@EnableConfigurationProperties(ResendProperties.class)
 public class ResendConfig {
 
     @Bean
-    @ConditionalOnProperty(prefix = "resend", name = "api-key")
+    @ConditionalOnProperty(prefix = "firefly.notifications.resend", name = "api-key")
     public RestClient resendRestClient(ResendProperties properties) {
         log.info("Initializing Resend email provider with base URL: {}", properties.getBaseUrl());
         return ServiceClient.rest("resend")
@@ -39,5 +44,11 @@ public class ResendConfig {
                 .jsonContentType()
                 .defaultHeader("Authorization", "Bearer " + properties.getApiKey())
                 .build();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(EmailProvider.class)
+    public EmailProvider resendEmailProvider(ResendProperties properties, RestClient resendRestClient) {
+        return new ResendEmailProvider(properties, resendRestClient);
     }
 }
