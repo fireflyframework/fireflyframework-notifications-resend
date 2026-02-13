@@ -24,9 +24,8 @@ import org.fireflyframework.notifications.interfaces.interfaces.providers.email.
 import org.fireflyframework.notifications.providers.resend.properties.v1.ResendProperties;
 import org.fireflyframework.client.RestClient;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
@@ -34,14 +33,12 @@ import reactor.core.scheduler.Schedulers;
 import java.util.*;
 
 @Slf4j
-@Component
+@RequiredArgsConstructor
 public class ResendEmailProvider implements EmailProvider {
 
-    @Autowired
-    private ResendProperties properties;
+    private final ResendProperties properties;
 
-    @Autowired
-    private RestClient resendClient;
+    private final RestClient resendClient;
 
     @Override
     public Mono<EmailResponseDTO> sendEmail(EmailRequestDTO request) {
