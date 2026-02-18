@@ -19,11 +19,12 @@ package org.fireflyframework.notifications.providers.resend.config.v1;
 
 import org.fireflyframework.client.RestClient;
 import org.fireflyframework.client.ServiceClient;
-import org.fireflyframework.notifications.interfaces.interfaces.providers.email.v1.EmailProvider;
+import org.fireflyframework.notifications.interfaces.providers.email.v1.EmailProvider;
 import org.fireflyframework.notifications.providers.resend.core.v1.ResendEmailProvider;
 import org.fireflyframework.notifications.providers.resend.properties.v1.ResendProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -31,10 +32,12 @@ import org.springframework.context.annotation.Bean;
 
 @Slf4j
 @AutoConfiguration
+@ConditionalOnClass(RestClient.class)
 @ConditionalOnProperty(name = "firefly.notifications.email.provider", havingValue = "resend")
 @EnableConfigurationProperties(ResendProperties.class)
-public class ResendConfig {
+public class ResendAutoConfiguration {
 
+    @ConditionalOnMissingBean
     @Bean
     @ConditionalOnProperty(prefix = "firefly.notifications.resend", name = "api-key")
     public RestClient resendRestClient(ResendProperties properties) {
